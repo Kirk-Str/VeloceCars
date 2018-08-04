@@ -1,0 +1,22 @@
+@model IEnumerable<VeloceCars.Models.PackageViewModels.PackageListViewModel>
+
+@{
+    ViewData["Title"] = "Package Offers";
+}
+
+<h2>Package Offers</h2>
+
+<div>
+    <h4>Available Packages</h4>
+    <hr />
+    
+    <div class="row">
+
+        @foreach(var package in Model)
+        {
+            @await Html.PartialAsync("_Tile", package)
+        }
+
+    </div>
+</div>
+

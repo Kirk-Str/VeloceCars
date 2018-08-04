@@ -1,0 +1,24 @@
+﻿@model IEnumerable<VeloceCars.Models.PackageViewModels.PackageListViewModel>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="jumbotron setbg">
+    <h1>Welcome to Roma. Veloce Cars, Italy</h1>
+    <h3>When in rome, do as the romans do.</h3>
+    <p>Get a car for awesome trip in Roma</p>    
+</div>
+
+<div class="row">
+
+    @foreach (var package in Model)
+    {
+        @*<partial name="_Tile" model="package"></partial>*@
+        @await Html.PartialAsync("_Tile", package)
+    }
+
+</div>
+

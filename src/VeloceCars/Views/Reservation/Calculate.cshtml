@@ -1,0 +1,56 @@
+@model VeloceCars.Models.ReservationModels.ReservationViewModel
+
+@{
+    ViewData["Title"] = "Calculate";
+}
+
+<h2>Calculate</h2>
+
+<form asp-action="Calculate">
+    <div class="form-horizontal">
+        <h4>Calculate Tour Cost</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="hidden" asp-for="ApplicationUserId" />
+            <label asp-for="PackageId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="PackageId" asp-items="Model.PackageList" class="form-control"></select>
+                <span asp-validation-for="PackageId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="StartDateTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="StartDateTime" class="form-control" />
+                <span asp-validation-for="StartDateTime" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EndDateTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="EndDateTime" class="form-control" />
+                <span asp-validation-for="EndDateTime" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NetTotal" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="NetTotal" placeholder="Tour Cost" class="form-control" />
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Calculate" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

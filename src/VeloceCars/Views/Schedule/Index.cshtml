@@ -1,0 +1,87 @@
+@model IEnumerable<VeloceCars.Models.ScheduleViewModels.JourneySchedueViewModel>
+
+@{
+    ViewData["Title"] = "Schedules";
+}
+
+<h2>My Active Schedules</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Package)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDateTime)
+            </td>
+            <td>
+                @if (item.Status == null)
+                {
+                    <label class="label label-info">Not Started</label>
+                }
+                else if (item.Status == 0)
+                {
+                    <label class="label label-primary">Started</label>
+                }
+                else
+                {
+                    <label class="label label-default">Ended</label>
+                }
+            </td>
+            <td>
+
+                @if(item.Status == null)
+                {
+                    <a asp-action="Journey" asp-route-id="@item.Id">Check In</a>
+                }
+                else if(item.Status == 0)
+                {
+                    <a asp-action="Journey" asp-route-id="@item.Id">Check Out</a>
+                }
+                else
+                {
+                    
+                }
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="All">Schedule History</a>
+</div>

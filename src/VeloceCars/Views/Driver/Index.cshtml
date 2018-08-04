@@ -1,0 +1,53 @@
+@model IEnumerable<VeloceCars.Models.DriverViewModels.DriverListViewModel>
+
+@{
+    ViewData["Title"] = "Drivers";
+}
+
+<h2>Drivers</h2>
+
+<a asp-action="Add" class="btn btn-info">Create New</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicle)
+            </td>
+            <td>
+                @if (item.Status == 1)
+                {
+                    <label class="label label-info">Engaged</label>
+                }
+                else
+                {
+                    <label class="label label-success">Available</label>
+                }
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

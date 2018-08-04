@@ -1,0 +1,83 @@
+@model IEnumerable<VeloceCars.Models.UserViewModels.ApplicationUserListViewModel>
+
+@{
+    ViewData["Title"] = "User Accounts";
+}
+
+<h2>User Accounts</h2>
+
+
+<a asp-action="RegisterUser" class="btn btn-info">Create New</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactOffice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleType)
+            </th>
+            <th>
+                Created By
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactOffice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleType)
+                </td>
+                <td>
+                    @if (item.CreatedBy == 0)
+                    {
+                        <text>Client</text>
+                    }
+                    else
+                    {
+                        <text>Administrator</text>
+                    }
+                </td>
+                <td>
+                    @if (!item.LockoutEnd.HasValue)
+                    {
+                        @if (item.RoleType.Equals("Client"))
+                        {
+                            <a asp-controller="Reservation" asp-action="Add" asp-route-id="@item.Id">Reserve</a>
+                            @:|
+                        }
+                        <a asp-action="Deactivate" asp-route-id="@item.Id">Deactivate</a>
+                    }
+                    else
+                    {
+                        <label class="label label-danger">Deactivated</label>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

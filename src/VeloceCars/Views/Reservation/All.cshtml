@@ -1,0 +1,114 @@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@model IEnumerable<VeloceCars.Models.ReservationModels.ReservationListViewModel>
+
+
+<h2>@ViewData["Title"]</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Package)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateTime)
+                </td>
+                <td>
+                    @if (item.CreatedBy == 0)
+                    {
+                        <text>Client</text>
+                    }
+                    else
+                    {
+                        <text>Administrator</text>
+                    }
+                </td>
+                <td>
+                    @if (!await AuthorizationService.AuthorizeAsync(User, "HQPolicy"))
+                    {
+                        @if (item.Feedback != null)
+                        {
+                            <label class="label label-success">Feedback given</label>
+                        }
+                        else
+                        {
+                            <label class="label label-default">No Feedback yet!</label>
+                        }
+                    }
+                    else
+                    {
+
+                        @if (item.Status == 0)
+                        {
+                            <label class="label label-danger">Rejected</label>
+                        }
+                        else if (item.Status == 1)
+                        {
+                            <label class="label label-success">Accepted</label>
+                        }
+                        else
+                        {
+                            <label class="label label-warning">Waiting</label>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (!await AuthorizationService.AuthorizeAsync(User, "HQPolicy"))
+                    {
+                        @if (item.Status != null)
+                        {
+                            <a asp-action="Review" asp-route-id="@item.Id">View Feedback</a>
+                        }
+                    }
+                    else
+                    {
+                        @if (item.Status == null)
+                        {
+                            <a asp-action="Review" asp-route-id="@item.Id">Review</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

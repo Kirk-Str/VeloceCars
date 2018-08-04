@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A6C8139-6335-426C-99CA-8CD369C67279}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B1FFC71-AA7C-4142-8259-42AD8383C0F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeloceCars", "src\VeloceCars\VeloceCars.csproj", "{D173B2DB-3C6E-41E0-8193-41AA37211357}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D173B2DB-3C6E-41E0-8193-41AA37211357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D173B2DB-3C6E-41E0-8193-41AA37211357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D173B2DB-3C6E-41E0-8193-41AA37211357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D173B2DB-3C6E-41E0-8193-41AA37211357}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D173B2DB-3C6E-41E0-8193-41AA37211357} = {1A6C8139-6335-426C-99CA-8CD369C67279}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98E03884-49C5-4B0F-B3D2-6F0767EF9915}
+	EndGlobalSection
+EndGlobal

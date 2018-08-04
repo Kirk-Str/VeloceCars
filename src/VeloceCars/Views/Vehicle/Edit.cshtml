@@ -1,0 +1,57 @@
+@model VeloceCars.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Vehicle</h4>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />        
+        <div class="form-group">
+            <label asp-for="Make" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Make" class="form-control" />
+                <span asp-validation-for="Make" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Model" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PlateNo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PlateNo" class="form-control" />
+                <span asp-validation-for="PlateNo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="InsuranceNo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="InsuranceNo" class="form-control" />
+                <span asp-validation-for="InsuranceNo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="rp-background">
+
+    <div class="rp-header">  
+        <div class="rp-head">
+            <h2>
+                @ViewData["Title"]
+            </h2>
+            <h4>
+                @ViewData["SubTitle"]
+            </h4>
+        </div>
+        <div class="rp-tool">
+            <button type="button" class="btn btn-success btn-xs" onclick="window.print()">
+                <span class="glyphicon glyphicon-print"></span> Print
+            </button>
+        </div>
+    </div>
+
+    <div class="rp-body">
+        @RenderBody()
+    </div>
+   
+    <footer class="rp-footer">
+        <hr />
+        <div class="pull-right">Print Date: @DateTime.Today.ToString("dd-MM-yyyy hh:mm tt")</div>
+    </footer>
+</div>

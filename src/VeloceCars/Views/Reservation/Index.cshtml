@@ -1,0 +1,90 @@
+@model IEnumerable<VeloceCars.Models.ReservationModels.ReservationListViewModel>
+
+@{
+    ViewData["Title"] = "Reservation";
+}
+
+<h2>My Reservations</h2>
+
+<a asp-action="Add" class="btn btn-info">Create New</a>
+<a asp-action="Calculate" class="btn btn-info">Tour Calculator</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Package)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateTime)
+                </td>
+                <td>
+                    @if (item.Status == null)
+                    {
+                        <label class="label label-warning">Waiting</label>
+                    }
+                    else if (item.Status == 1)
+                    {
+                        <label class="label label-success">Accepted</label>
+                    }
+                    else if (item.Status == 0)
+                    {
+                        <label class="label label-danger">Rejected</label>
+                    }
+                    else if (item.Status == 2)
+                    {
+                        <label class="label label-default">Ended</label>
+                    }
+                </td>
+                <td>
+                    @if (item.Status != null)
+                    {
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                        @if (item.Feedback == null)
+                        {
+                            @:|
+                            <a asp-action="Feedback" asp-route-id="@item.Id">Feedback</a>
+
+                        }
+
+                    }
+                    else
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> @:|
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> @:|
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

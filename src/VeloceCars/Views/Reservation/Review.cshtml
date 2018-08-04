@@ -1,0 +1,122 @@
+@model VeloceCars.Models.ReservationModels.ReservationReviewViewModel
+
+@{
+    ViewData["Title"] = "Review";
+}
+
+<h2>Review</h2>
+
+
+<form asp-action="Review">
+    <div class="form-horizontal">
+        <h4>@ViewData["SubTitle"]</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5">
+                <div class="form-group">
+                    <label asp-for="ApplicationUser" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="hidden" asp-for="ApplicationUserId" />
+                        <input asp-for="ApplicationUser" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Package" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="hidden" asp-for="PackageId" />
+                        <input asp-for="Package" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DriverId" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        @if (Model.Status != null)
+                        {
+                            <input asp-for="DriverId" readonly="readonly" class="form-control" />
+                        }
+                        else
+                        {
+                            <select asp-for="DriverId" asp-items="Model.DriverList" class="form-control"></select>
+                            <span asp-validation-for="DriverId" class="text-danger" />
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDateTime" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="StartDateTime" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDateTime" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="EndDateTime" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreatedBy" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        @if (Model.CreatedBy == 0)
+                        {
+                            <input value="Client" class="form-control" readonly="readonly" />
+                        }
+                        else
+                        {
+                            <input value="Administrator" class="form-control" readonly="readonly" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5">
+                <div class="form-group">
+                    <label asp-for="Request" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <textarea asp-for="Request" class="form-control" rows="4" readonly="readonly"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Reply" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        @if(Model.Status != null)
+                        {
+                            <textarea asp-for="Reply" class="form-control" rows="4" readonly="readonly"></textarea>
+                        }
+                        else
+                        {
+                            <textarea asp-for="Reply" class="form-control" rows="4"></textarea>
+                        }
+                        
+                    </div>
+                </div>
+                @if (Model.Status != null)
+                {
+                    <div class="form-group">
+                        <label asp-for="Feedback" class="col-md-4 control-label"></label>
+                        <div class="col-md-8">
+                            <textarea asp-for="Feedback" readonly="readonly" class="form-control" rows="4"></textarea>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-md-12 col-md-offset-3">
+                    @if (Model.Status == null)
+                    {
+                        <input type="submit" name="submit" value="Accept" class="btn btn-success" />
+                        <input type="submit" name="submit" value="Reject" class="btn btn-default" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="All">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -1,0 +1,89 @@
+@model VeloceCars.Models.ScheduleViewModels.JourneySchedueViewModel
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h2>Journey</h2>
+
+<form asp-action="Journey" >
+    <div class="form-horizontal">
+        <h4>Start the journey</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5">
+                <div class="form-group">
+                    <label asp-for="ReservationId" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="ReservationId" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Client" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Package" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="Package" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDateTime" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="StartDateTime" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDateTime" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="EndDateTime" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5">
+                <div class="form-group">
+                    <label asp-for="JourneyStartDateTime" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="JourneyStartDateTime" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="JourneyEndDateTime" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="JourneyEndDateTime" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NetTotal" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="NetTotal" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5">
+                <div class="col-md-8 col-md-offset-4">
+                    @if (Model.Status != 1)
+                    {
+                        <input name="checkbtn" type="submit" value="@ViewData["CheckButton"]" class="btn btn-success" />
+                    }
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="@ViewData["ReturnUrl"]">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

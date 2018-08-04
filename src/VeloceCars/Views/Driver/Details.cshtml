@@ -1,0 +1,43 @@
+@model VeloceCars.Models.DriverViewModels.DriverListViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Driver</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+           @if (Model.Status == 1)
+           {
+            <text>Engaged</text>
+           }
+           else
+           {
+            <text>Available</text>
+           }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
